@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/jeefinal?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: isayaiu123124213
 
 mybatis:
   config-location: classpath:mybatis-config.xml
