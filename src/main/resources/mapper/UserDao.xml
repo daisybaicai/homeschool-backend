@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.UserDao">
+    <select id="queryUserById" resultType="com.cdl.demo.domain.User">
+        SELECT user_id, user_name, user_type, user_head_url, user_cover_url, user_nickname
+        FROM user
+        WHERE user_id=#{userId}
+    </select>
+</mapper>
