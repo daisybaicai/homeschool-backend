@@ -14,4 +14,6 @@ public interface UserDao {
                                              @Param("endTime") Timestamp endTime,
                                              @Param("userName") String userName,
                                              @Param("userType") String userType);
+
+    int addUser(User user);
 }

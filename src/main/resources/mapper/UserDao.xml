@@ -4,8 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cdl.demo.dao.UserDao">
     <select id="queryUserById" resultType="com.cdl.demo.domain.User">
-        SELECT user_id, user_name, user_type, user_head_url, user_cover_url, user_nickname
+        SELECT user_id, user_name, user_type, user_head_url, user_cover_url, user_nickname,user_register_time
         FROM user
         WHERE user_id=#{userId}
     </select>
+
+    <select id="queryUserByMultipleConditions" resultType="com.cdl.demo.domain.User">
+        select user_id, user_name, user_type, user_head_url, user_cover_url, user_nickname,user_register_time
+        FROM user
+        <where>
+            <if test="userName!= null">
+                and user_name=#{userName}
+            </if>
+            <if test="userType != null">
+                and user_type=#{userType}
+            </if>
+            <if test="startTime != null and endTime != null">
+                and user_register_time between #{startTime} and #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addUser" parameterType="com.cdl.demo.domain.User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO user(user_name, user_password, user_type) VALUES (#{userName}, #{userPassword}, #{userType})
+    </insert>
 </mapper>
