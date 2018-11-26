@@ -1,5 +1,7 @@
 package com.cdl.demo.domain;
 
+import java.sql.Timestamp;
+
 public class User {
     private Integer userId;
     private String userName;
@@ -8,6 +10,15 @@ public class User {
     private String userHeadUrl;
     private String userCoverUrl;
     private String userNickname;
+    private Timestamp userRegisterTime;
+
+    public Timestamp getUserRegisterTime() {
+        return userRegisterTime;
+    }
+
+    public void setUserRegisterTime(Timestamp userRegisterTime) {
+        this.userRegisterTime = userRegisterTime;
+    }
 
     public Integer getUserId() {
         return userId;
