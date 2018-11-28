@@ -25,10 +25,10 @@ public class UserServiceImpl implements UserService{
         Timestamp startTimeTimeStamp = null;
         Timestamp endTimeTimeStamp = null;
         if (startTime != null) {
-            startTimeTimeStamp = Timestamp.valueOf(startTime);
+            startTimeTimeStamp = new Timestamp(new Long(startTime));
         }
         if (endTime != null) {
-            endTimeTimeStamp = Timestamp.valueOf(endTime);
+            endTimeTimeStamp = new Timestamp(new Long(endTime));
         }
         return userDao.queryUserByMultipleConditions(startTimeTimeStamp, endTimeTimeStamp, userName, userType);
     }

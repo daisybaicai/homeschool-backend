@@ -26,6 +26,12 @@ public class Result<T> {
         this.msg = resultEnum.getMsg();
     }
 
+    public Result(ResultEnum resultEnum, T data) {
+        this.code = resultEnum.getCode();
+        this.msg = resultEnum.getMsg();
+        this.data = data;
+    }
+
     public Integer getCode() {
         return code;
     }
