@@ -4,6 +4,7 @@ import com.cdl.demo.domain.Result;
 import com.cdl.demo.domain.User;
 import com.cdl.demo.enums.ResultEnum;
 import com.cdl.demo.service.UserService;
+import com.cdl.demo.utils.MyMailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ResourceUtils;
@@ -46,21 +47,36 @@ public class UserController {
     }
 
     @PostMapping(value = "/{userId}/userHead")
-    public Result uploadFile(@RequestParam("head") MultipartFile file, @PathVariable int userId) throws FileNotFoundException {
+    public Result<String> uploadFile(@RequestParam("head") MultipartFile file, @PathVariable int userId) throws FileNotFoundException {
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf('.'));
         String newFileName = userId + "_" + new Date().getTime() + suffix;
-        System.out.println(ResourceUtils.getURL("src/main/resources").getPath());
-        String abp = ResourceUtils.getURL("src/main/resources").getPath();
-        String path = abp + "/static/img/userHead/" + newFileName;
+//        String abp = ResourceUtils.getURL("src/main/resources").getPath();
+        String abp = ResourceUtils.getURL("classpath:static/img/userHead").getPath();
+        String path = abp + "/" + newFileName;
         File newFile = new File(path);
         try {
             file.transferTo(newFile);
-            return new Result(ResultEnum.SUCCESS);
+            userService.modifyUserHead(userId, newFileName);
+            return new Result<>(ResultEnum.SUCCESS, newFileName);
         }
         catch (Exception e){
             e.printStackTrace();
-            return new Result(ResultEnum.ERROR);
+            return new Result<>(ResultEnum.ERROR, null);
         }
+    }
+
+    @GetMapping(value = "/login")
+    public Result login(String userName, String userPassword) {
+        return userService.login(userName, userPassword);
+    }
+
+    @GetMapping(value = "/code")
+    public Result getIdentifyingCode(String email) {
+        MyMailer myMailer = new MyMailer();
+        myMailer.createServer();
+        int code = myMailer.addMessage(email);
+        myMailer.sendMessage();
+        return new Result<>(ResultEnum.SUCCESS, code);
     }
 }

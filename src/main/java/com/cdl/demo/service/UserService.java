@@ -1,8 +1,8 @@
 package com.cdl.demo.service;
 
+import com.cdl.demo.domain.Result;
 import com.cdl.demo.domain.User;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface UserService {
@@ -12,4 +12,6 @@ public interface UserService {
                                              String userName,
                                              String userType);
     User addUser(User user);
+    Result login(String userName, String userPassword);
+    int modifyUserHead(int userId, String userHeadUrl);
 }

@@ -13,7 +13,8 @@ public interface UserDao {
     List<User> queryUserByMultipleConditions(@Param("startTime")Timestamp startTime,
                                              @Param("endTime") Timestamp endTime,
                                              @Param("userName") String userName,
+                                             @Param("userPassword") String userPassword,
                                              @Param("userType") String userType);
-
     int addUser(User user);
+    int updateUserHead(@Param("userId") int userId,@Param("userHeadUrl") String userHeadUrl);
 }

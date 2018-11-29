@@ -15,6 +15,15 @@ public class User {
     private String userCoverUrl;
     private String userNickname;
     private Timestamp userRegisterTime;
+    private Integer userClassId;
+
+    public Integer getUserClassId() {
+        return userClassId;
+    }
+
+    public void setUserClassId(Integer userClassId) {
+        this.userClassId = userClassId;
+    }
 
     public Timestamp getUserRegisterTime() {
         return userRegisterTime;
