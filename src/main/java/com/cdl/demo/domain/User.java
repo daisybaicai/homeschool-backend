@@ -1,15 +1,19 @@
 package com.cdl.demo.domain;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 public class User {
     private Integer userId;
     @NotNull(message = "用户名不能为空")
+    @NotEmpty(message = "用户名不能为空")
     private String userName;
     @NotNull(message = "用户密码不能为空")
+    @NotEmpty(message = "用户密码不能为空")
     private String userPassword;
     @NotNull(message = "用户类型不能为空")
+    @NotEmpty(message = "用户类型不能为空")
     private String userType;
     private String userHeadUrl;
     private String userCoverUrl;
