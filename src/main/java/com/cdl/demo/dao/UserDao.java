@@ -17,4 +17,5 @@ public interface UserDao {
                                              @Param("userType") String userType);
     int addUser(User user);
     int updateUserHead(@Param("userId") int userId,@Param("userHeadUrl") String userHeadUrl);
+
 }

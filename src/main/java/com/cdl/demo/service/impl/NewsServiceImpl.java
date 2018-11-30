@@ -41,4 +41,20 @@ public class NewsServiceImpl implements NewsService {
         news.setNewsUser(user);
         return news;
     }
+
+    @Override
+    public List<News> getNewsAllByUserIds(int userId) {
+        List<News> news = newsDao.queryNewsAll();
+        for (int i = 0; i < news.size(); i++) {
+            News onenews = news.get(i);
+            int newsid = onenews.getNewsId();
+            User user = userDao.queryUserById(onenews.getNewsUserId());
+            onenews.setNewsUser(user);
+            int likeornotlike = newsDao.queryNewsLike(newsid,userId);
+            onenews.setNewsLikeornotlike(likeornotlike);
+            int likenum = newsDao.queryLikeCount(newsid);
+            onenews.setNewLikeNum(likenum);
+        }
+        return news;
+    }
 }
