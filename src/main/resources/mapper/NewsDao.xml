@@ -18,4 +18,18 @@
         FROM news
         WHERE news_id=#{newsId}
     </select>
+    <select id="queryLikeCount" resultType="int">
+        SELECT count(*)
+        FROM `like`
+        WHERE like_news_id=#{newsId}
+    </select>
+    <select id="queryNewsAll" resultType="com.cdl.demo.domain.News">
+        SELECT news_id, news_user_id, news_content, news_upload_time, news_content
+        FROM news
+    </select>
+    <select id="queryNewsLike" resultType="int">
+        SELECT count(*)
+        FROM `like`
+        WHERE like_news_id=#{newsId} AND like_user_id=#{userId}
+    </select>
 </mapper>

@@ -8,6 +8,43 @@ public class News {
     private String newsContent;
     private Date newsUploadTime;
     private User newsUser;
+    private String newsImageURLs;
+    private String newsVideoURLs;
+    private Integer newsLikeornotlike;
+    private Integer newLikeNum;
+
+    public Integer getNewsLikeornotlike() {
+        return newsLikeornotlike;
+    }
+
+    public void setNewsLikeornotlike(Integer newsLikeornotlike) {
+        this.newsLikeornotlike = newsLikeornotlike;
+    }
+
+    public Integer getNewLikeNum() {
+        return newLikeNum;
+    }
+
+    public void setNewLikeNum(Integer newLikeNum) {
+        this.newLikeNum = newLikeNum;
+    }
+
+
+    public String getNewsImageURLs() {
+        return newsImageURLs;
+    }
+
+    public void setNewsImageURLs(String newsImageURLs) {
+        this.newsImageURLs = newsImageURLs;
+    }
+
+    public String getNewsVideoURLs() {
+        return newsVideoURLs;
+    }
+
+    public void setNewsVideoURLs(String newsVideoURLs) {
+        this.newsVideoURLs = newsVideoURLs;
+    }
 
     public User getNewsUser() {
         return newsUser;
