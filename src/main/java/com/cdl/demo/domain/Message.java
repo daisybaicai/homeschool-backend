@@ -8,6 +8,9 @@ public class Message {
     private String messageContent;
     private Timestamp messageTime;
 
+    public Message() {
+    }
+
     @Override
     public String toString() {
         return fromUserId + " " + toUserId + " " + messageContent + " " + messageTime.getTime();
@@ -50,5 +53,9 @@ public class Message {
 
     public void setMessageTime(Timestamp messageTime) {
         this.messageTime = messageTime;
+    }
+
+    public String getFileLine() {
+        return fromUserId + " " + toUserId + " " + messageContent + " " + System.currentTimeMillis();
     }
 }

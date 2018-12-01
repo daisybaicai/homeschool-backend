@@ -4,6 +4,7 @@ import com.cdl.demo.domain.Message;
 import com.cdl.demo.domain.Result;
 import com.cdl.demo.enums.ResultEnum;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
@@ -22,9 +23,6 @@ public class MessageSystem {
             List<Message> messageList = new ArrayList<>();
             while ((line = bufferedReader.readLine()) != null) {
                 String [] values = line.split(" +");
-                for (String value: values) {
-                    System.out.println(value + "  ");
-                }
                 Message item = new Message(Integer.parseInt(values[0]), Integer.parseInt(values[1]), values[2], new Timestamp(new Long(values[3])));
                 messageList.add(item);
             }
@@ -39,28 +37,41 @@ public class MessageSystem {
     }
 
     public Result sendPersonalMessage(Message message) {
-        File file = null;
-        try {
-            file = new File(ResourceUtils.getURL("classpath:message/personal/" +
-                    message.getFromUserId()).getPath() + "/" + message.getToUserId() + ".txt");
-        } catch (FileNotFoundException e) {
-            File fileParent = file.getParentFile();
-            fileParent.mkdirs();
-            try {
-                file.createNewFile();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
-        }
+        File file;
+        File mirror;
+        String path = ClassUtils.getDefaultClassLoader().getResource("message/personal/").getPath() + message.getFromUserId() + "/" + message.getToUserId() + ".txt";
+        String mirrorPath = ClassUtils.getDefaultClassLoader().getResource("message/personal/").getPath() + message.getToUserId() + "/" + message.getFromUserId() + ".txt";
+        file = new File(path);
+        mirror = new File(mirrorPath);
+        mkMessageDirs(file);
+        mkMessageDirs(mirror);
         BufferedWriter bufferedWriter;
+        BufferedWriter mirrorWriter;
         try {
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
-            bufferedWriter.write(message.toString() + "\r\n");
+            mirrorWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mirror, true)));
+            bufferedWriter.write(message.getFileLine() + "\r\n");
+            mirrorWriter.write(message.getFileLine() + "\r\n");
+            bufferedWriter.close();
+            mirrorWriter.close();
             return new Result(ResultEnum.SUCCESS);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return new Result(ResultEnum.ERROR);
+    }
+
+    private void mkMessageDirs(File file) {
+        if (!file.exists()) {
+            File fileParent = file.getParentFile();
+            if (!fileParent.exists()) {
+                fileParent.mkdirs();
+            }
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

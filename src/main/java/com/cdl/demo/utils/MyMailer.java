@@ -1,11 +1,14 @@
 package com.cdl.demo.utils;
 
+import org.springframework.stereotype.Component;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+@Component
 public class MyMailer {
 
     private Session session;
