@@ -3,6 +3,7 @@ package com.cdl.demo.enums;
 public enum ResultEnum {
     ERROR(-1,"错误"),
     SUCCESS(0,"成功"),
+    MESSGAE_EMPTY(1, "消息记录为空")
     ;
 
     private Integer code;
