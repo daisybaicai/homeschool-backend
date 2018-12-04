@@ -4,6 +4,7 @@ import com.cdl.demo.domain.Result;
 import com.cdl.demo.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     User getUserById(int userId);
@@ -13,5 +14,6 @@ public interface UserService {
                                              String userType);
     User addUser(User user);
     Result login(String userName, String userPassword);
+    Map<Integer, User> getClassUserList(int classId);
     int modifyUserHead(int userId, String userHeadUrl);
 }

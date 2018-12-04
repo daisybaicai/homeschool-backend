@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -56,6 +58,16 @@ public class UserServiceImpl implements UserService{
                 return new Result<>(ResultEnum.SUCCESS, user.get(0));
             }
         }
+    }
+
+    @Override
+    public Map<Integer, User> getClassUserList(int classId) {
+        List<User> userList = userDao.queryUserByClassId(classId);
+        Map<Integer, User> userMap = new HashMap<>();
+        for (User user: userList) {
+            userMap.put(user.getUserId(), user);
+        }
+        return userMap;
     }
 
     @Override

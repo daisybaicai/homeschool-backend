@@ -32,9 +32,14 @@ public class UserController {
         return new Result<>(ResultEnum.SUCCESS, userService.getUserById(userId));
     }
 
-    @GetMapping(value = "")
+    @GetMapping(value = "", params = {"startTime", "endTime", "userName", "userType"})
     public Result<List<User>> getUserByMultipleConditions(String startTime, String endTime, String userName, String userType) {
         return new Result<>(ResultEnum.SUCCESS, userService.getUserByMultipleConditions(startTime, endTime, userName, userType));
+    }
+
+    @GetMapping(value = "", params = {"classId"})
+    public Result getUserByClassId(int classId) {
+        return new Result<>(ResultEnum.SUCCESS, userService.getClassUserList(classId));
     }
 
     @PostMapping(value = "")

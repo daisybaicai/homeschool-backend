@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Mapper
 public interface UserDao {
     User queryUserById(Integer userId);
     List<User> queryUserByMultipleConditions(@Param("startTime")Timestamp startTime,
@@ -15,6 +14,7 @@ public interface UserDao {
                                              @Param("userName") String userName,
                                              @Param("userPassword") String userPassword,
                                              @Param("userType") String userType);
+    List<User> queryUserByClassId(@Param("classId") int classId);
     int addUser(User user);
     int updateUserHead(@Param("userId") int userId,@Param("userHeadUrl") String userHeadUrl);
 

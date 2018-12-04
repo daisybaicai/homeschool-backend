@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class Message {
     private Integer fromUserId;
     private Integer toUserId;
+    private Integer toClassId;
     private String messageContent;
     private Timestamp messageTime;
 
@@ -16,11 +17,25 @@ public class Message {
         return fromUserId + " " + toUserId + " " + messageContent + " " + messageTime.getTime();
     }
 
+    public Message(Integer fromUserId, String messageContent, Timestamp messageTime) {
+        this.fromUserId = fromUserId;
+        this.messageContent = messageContent;
+        this.messageTime = messageTime;
+    }
+
     public Message(Integer fromUserId, Integer toUserId, String messageContent, Timestamp messageTime) {
         this.fromUserId = fromUserId;
         this.toUserId = toUserId;
         this.messageContent = messageContent;
         this.messageTime = messageTime;
+    }
+
+    public Integer getToClassId() {
+        return toClassId;
+    }
+
+    public void setToClassId(Integer toClassId) {
+        this.toClassId = toClassId;
     }
 
     public Integer getFromUserId() {
@@ -57,5 +72,9 @@ public class Message {
 
     public String getFileLine() {
         return fromUserId + " " + toUserId + " " + messageContent + " " + System.currentTimeMillis();
+    }
+
+    public String getClassMessageFileLine() {
+        return fromUserId + " " + messageContent + " " + System.currentTimeMillis();
     }
 }

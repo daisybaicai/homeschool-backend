@@ -47,7 +47,6 @@ public class MyWebSocket {
 
     private void sendMessage(String message) throws IOException {
         JSONObject chat = JSON.parseObject(message);
-        String messageContent = chat.get("messageContent").toString();
 
         if (chat.get("toClassId").equals("") || chat.get("toClassId") == null) {
             Integer toUserId = Integer.parseInt(chat.get("toUserId").toString());

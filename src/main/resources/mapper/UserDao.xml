@@ -9,6 +9,12 @@
         WHERE user_id=#{userId}
     </select>
 
+    <select id="queryUserByClassId" resultType="com.cdl.demo.domain.User">
+        SELECT user_id, user_name, user_password, user_type, user_head_url, user_cover_url, user_nickname,user_register_time, user_class_id
+        FROM user
+        WHERE user_class_id=#{classId}
+    </select>
+
     <select id="queryUserByMultipleConditions" resultType="com.cdl.demo.domain.User">
         select user_id, user_name, user_password, user_type, user_head_url, user_cover_url, user_nickname,user_register_time, user_class_id
         FROM user
