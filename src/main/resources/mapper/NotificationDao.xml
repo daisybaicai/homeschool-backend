@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.NotificationDao">
+    <select id="queryNotificationByClassId" resultType="com.cdl.demo.domain.Notification">
+        SELECT notification_class_id, notification_user_id, notification_title, notification_content, notification_time
+        FROM notification
+        WHERE notification_class_id=#{classId}
+        ORDER BY notification_time DESC
+    </select>
+</mapper>
