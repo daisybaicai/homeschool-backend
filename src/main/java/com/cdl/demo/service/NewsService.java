@@ -10,4 +10,6 @@ public interface NewsService {
     News getNewsByNewsId(int newsId);
 
     List<News> getNewsAllByUserIds(int userId);
+
+    String insertNews(News news);
 }

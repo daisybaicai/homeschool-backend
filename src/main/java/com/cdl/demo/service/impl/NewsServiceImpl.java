@@ -57,4 +57,15 @@ public class NewsServiceImpl implements NewsService {
         }
         return news;
     }
+
+    @Override
+    public String insertNews(News news) {
+        String result = null;
+        if (newsDao.insertNews(news) == 1){
+            result = "发布动态成功";
+        } else  {
+            result = "发布动态失败请重试";
+        }
+        return result;
+    }
 }
