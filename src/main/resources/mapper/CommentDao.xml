@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.CommentDao">
+    <select id="queryCommentByNewsId" resultType="com.cdl.demo.domain.Comment">
+        SELECT comment_id, comment_news_id, comment_user_id, comment_content, comment_time, comment_target_id, comment_type
+        FROM comment
+        WHERE comment_news_id=#{commentNewsId}
+    </select>
+    <select id="queryCommentUserIdByCommentId" resultType="int">
+        SELECT comment_user_id
+        FROM comment
+        WHERE comment_id= #{commentTargetId}
+    </select>
+</mapper>
