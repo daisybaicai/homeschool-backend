@@ -17,4 +17,6 @@ public interface NewsDao {
     List<News> queryNewsAll();
 
     int queryNewsLike(@Param("newsId") Integer newsId, @Param("userId") int userId);
+
+    int insertNews(News news);
 }

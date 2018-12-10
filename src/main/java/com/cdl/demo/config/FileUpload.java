@@ -13,8 +13,8 @@ public class FileUpload {
     @Bean
     public MultipartConfigElement multipartConfigElement(){
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize(DataSize.ofBytes(2 * 1024 * 1024));
-        factory.setMaxRequestSize(DataSize.ofBytes(2 * 1024 * 1024));
+        factory.setMaxFileSize(DataSize.ofBytes(10 * 1024 * 1024));
+        factory.setMaxRequestSize(DataSize.ofBytes(10 * 1024 * 1024));
         return factory.createMultipartConfig();
     }
 }

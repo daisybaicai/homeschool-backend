@@ -37,4 +37,10 @@
         FROM `like`
         WHERE like_news_id=#{newsId} AND like_user_id=#{userId}
     </select>
+    <insert id="insertNews" parameterType="com.cdl.demo.domain.News" useGeneratedKeys="true" keyProperty="newId">
+        INSERT
+        INTO
+        news(news_user_id,news_content,news_imageURLs,news_videoURLs)
+        VALUES (#{newsUserId}, #{newsContent}, #{newsImageURLs}, #{newsVideoURLs})
+    </insert>
 </mapper>
