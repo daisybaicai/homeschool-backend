@@ -16,4 +16,8 @@ public interface UserService {
     Result login(String userName, String userPassword);
     Map<Integer, User> getClassUserList(int classId);
     int modifyUserHead(int userId, String userHeadUrl);
+    String getUserPasswordById(int userId);
+    int updateUserPassword(int userId,String userPassword);
+    List getUserRegisterAmountAllMonth();
+    Map getUserRegisterAmountByType();
 }

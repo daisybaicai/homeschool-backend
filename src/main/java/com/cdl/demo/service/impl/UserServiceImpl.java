@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,5 +74,34 @@ public class UserServiceImpl implements UserService{
     @Override
     public int modifyUserHead(int userId, String userHeadUrl) {
         return userDao.updateUserHead(userId, userHeadUrl);
+    }
+
+    @Override
+    public String getUserPasswordById(int userId) {
+        return userDao.queryUserPasswordById(userId);
+    }
+
+    @Override
+    public int updateUserPassword(int userId, String userPassword) {
+        return userDao.updateUserPassword(userId, userPassword);
+    }
+
+    @Override
+    public List getUserRegisterAmountAllMonth() {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1;i <= 12; i++) {
+            list.add(userDao.queryUserRegisterAmountByMonth(i));
+        }
+        return list;
+    }
+
+    @Override
+    public Map getUserRegisterAmountByType() {
+        String[] types = {"admin", "teacher", "parent", "student"};
+        Map<String, Integer> map = new HashMap<>();
+        for (String type: types) {
+            map.put(type, userDao.queryUserRegisterAmountByType(type));
+        }
+        return map;
     }
 }

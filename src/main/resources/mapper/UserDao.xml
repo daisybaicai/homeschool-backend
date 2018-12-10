@@ -34,6 +34,24 @@
         </where>
     </select>
 
+    <select id="queryUserPasswordById" resultType="String">
+        SELECT user_password
+        FROM user
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="queryUserRegisterAmountByMonth" resultType="int">
+        SELECT count(*)
+        FROM user
+        WHERE month(user_register_time)=#{month}
+    </select>
+
+    <select id="queryUserRegisterAmountByType" resultType="int">
+        SELECT count(*)
+        FROM user
+        WHERE user_type=#{type}
+    </select>
+
     <insert id="addUser" parameterType="com.cdl.demo.domain.User" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO user(user_name, user_password, user_type) VALUES (#{userName}, #{userPassword}, #{userType})
     </insert>
@@ -41,6 +59,12 @@
     <update id="updateUserHead">
         UPDATE user
         SET user_head_url=#{userHeadUrl}
+        WHERE user_id=#{userId}
+    </update>
+
+    <update id="updateUserPassword">
+        UPDATE user
+        SET user_password=#{userPassword}
         WHERE user_id=#{userId}
     </update>
 </mapper>

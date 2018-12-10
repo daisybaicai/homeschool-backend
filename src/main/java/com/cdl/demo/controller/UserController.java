@@ -85,4 +85,24 @@ public class UserController {
         myMailer.sendMessage();
         return new Result<>(ResultEnum.SUCCESS, code);
     }
+
+    @GetMapping(value = "/password")
+    public Result queryUserPasswordById(int userId) {
+        return new Result<>(ResultEnum.SUCCESS, userService.getUserPasswordById(userId));
+    }
+
+    @PutMapping(value = "/password")
+    public Result updateUserPassword(int userId, String userPassword) {
+        return new Result<>(ResultEnum.SUCCESS, userService.updateUserPassword(userId, userPassword));
+    }
+
+    @GetMapping(value = "/monthAmount")
+    public Result getUserRegisterAmountAllMonth() {
+        return new Result<>(ResultEnum.SUCCESS, userService.getUserRegisterAmountAllMonth());
+    }
+
+    @GetMapping(value = "/typeAmount")
+    public Result getUserRegisterAmountByType() {
+        return new Result<>(ResultEnum.SUCCESS, userService.getUserRegisterAmountByType());
+    }
 }

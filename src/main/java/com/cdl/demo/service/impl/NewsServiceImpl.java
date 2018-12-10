@@ -8,6 +8,7 @@ import com.cdl.demo.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +41,15 @@ public class NewsServiceImpl implements NewsService {
         User user = userDao.queryUserById(news.getNewsUserId());
         news.setNewsUser(user);
         return news;
+    }
+
+    @Override
+    public List getNewsAmountAllMonth() {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1;i <= 12; i++) {
+            list.add(newsDao.queryNewsAmountByMonth(i));
+        }
+        return list;
     }
 
     @Override

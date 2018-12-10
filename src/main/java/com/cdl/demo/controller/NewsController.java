@@ -39,4 +39,8 @@ public class NewsController {
         return new Result<List<News>>(ResultEnum.SUCCESS, newsService.getNewsAllByUserIds(userId));
     }
 
+    @GetMapping(value = "/monthAmount")
+    public Result getNewsAmountAllMonth() {
+        return new Result<>(ResultEnum.SUCCESS, newsService.getNewsAmountAllMonth());
+    }
 }

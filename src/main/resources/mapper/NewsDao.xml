@@ -18,6 +18,11 @@
         FROM news
         WHERE news_id=#{newsId}
     </select>
+    <select id="queryNewsAmountByMonth" resultType="int">
+        SELECT count(*)
+        FROM news
+        WHERE month(news_upload_time)=#{month}
+    </select>
     <select id="queryLikeCount" resultType="int">
         SELECT count(*)
         FROM `like`
