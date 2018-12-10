@@ -1,6 +1,7 @@
 package com.cdl.demo.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class News {
     private Integer newsId;
@@ -12,6 +13,7 @@ public class News {
     private String newsVideoURLs;
     private Integer newsLikeornotlike;
     private Integer newLikeNum;
+    private List<Comment> newsComment;
 
     public Integer getNewsLikeornotlike() {
         return newsLikeornotlike;
@@ -84,5 +86,14 @@ public class News {
 
     public void setNewsUploadTime(Date newsUploadTime) {
         this.newsUploadTime = newsUploadTime;
+    }
+
+
+    public List<Comment> getNewsComment() {
+        return newsComment;
+    }
+
+    public void setNewsComment(List<Comment> newsComment) {
+        this.newsComment = newsComment;
     }
 }

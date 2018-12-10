@@ -8,8 +8,8 @@ public interface NewsService {
     int getNewsAmountByTime(String startTime, String endTime);
     List<News> getNewsByUserId(int userId);
     News getNewsByNewsId(int newsId);
-
     List<News> getNewsAllByUserIds(int userId);
-
     String insertNews(News news);
+
+    News getDetailNewsByNewsId(int newsId);
 }

@@ -2,8 +2,10 @@ package com.cdl.demo.service.impl;
 
 import com.cdl.demo.dao.NewsDao;
 import com.cdl.demo.dao.UserDao;
+import com.cdl.demo.domain.Comment;
 import com.cdl.demo.domain.News;
 import com.cdl.demo.domain.User;
+import com.cdl.demo.service.CommentService;
 import com.cdl.demo.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private NewsDao newsDao;
+
+    @Autowired
+    private CommentService commentService;
 
     @Override
     public int getNewsAmountByTime(String startTime, String endTime) {
@@ -67,5 +72,15 @@ public class NewsServiceImpl implements NewsService {
             result = "发布动态失败请重试";
         }
         return result;
+    }
+
+    @Override
+    public News getDetailNewsByNewsId(int newsId) {
+        News news = newsDao.queryNewsByNewsId(newsId);
+        User user = userDao.queryUserById(news.getNewsUserId());
+        List<Comment> comment = commentService.queryCommentByNewsId(newsId);
+        news.setNewsUser(user);
+        news.setNewsComment(comment);
+        return news;
     }
 }

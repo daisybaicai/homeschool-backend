@@ -27,6 +27,11 @@ public class NewsController {
         return new Result<>(ResultEnum.SUCCESS, newsService.getNewsByNewsId(newsId));
     }
 
+    @GetMapping(value = "newsdetail/{newsId}")
+    public Result<News> getDetailNewsByNewsId(@PathVariable int newsId) {
+        return new Result<News>(ResultEnum.SUCCESS, newsService.getDetailNewsByNewsId(newsId));
+    }
+
     @GetMapping(value = "/amount")
     public Result<Integer> getNewsAmount(String startTime, String endTime){
         return new Result<>(ResultEnum.SUCCESS, newsService.getNewsAmountByTime(startTime, endTime));
@@ -60,6 +65,7 @@ public class NewsController {
 
         return new Result(ResultEnum.SUCCESS,newsService.insertNews(news));
     }
+
 
     @RequestMapping("/upload")
     public Result upload(@RequestParam("picture") MultipartFile picture, HttpServletRequest request) throws FileNotFoundException {
