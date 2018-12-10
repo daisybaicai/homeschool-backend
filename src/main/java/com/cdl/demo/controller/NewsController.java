@@ -63,7 +63,7 @@ public class NewsController {
         System.out.println(news.getNewsVideoURLs());
         System.out.println(news.getNewsContent());
 
-        return new Result(ResultEnum.SUCCESS,newsService.insertNews(news));
+        return new Result<>(ResultEnum.SUCCESS,newsService.insertNews(news));
     }
 
     @RequestMapping("/upload")
