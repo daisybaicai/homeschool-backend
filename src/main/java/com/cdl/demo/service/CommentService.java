@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface CommentService {
     List<Comment> queryCommentByNewsId(int newId);
+
+    int sendComment(Comment comment);
 }

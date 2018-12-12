@@ -28,4 +28,10 @@ public class CommentServiceImpl implements CommentService {
         }
         return comments;
     }
+
+    @Override
+    public int sendComment(Comment comment) {
+        commentDao.sendComment(comment);
+        return 0;
+    }
 }

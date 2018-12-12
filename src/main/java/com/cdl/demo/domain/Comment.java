@@ -13,6 +13,21 @@ public class Comment {
     private User commentUser;
     private User replyUser;
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", commentNewsId=" + commentNewsId +
+                ", commentUserId=" + commentUserId +
+                ", commentContent='" + commentContent + '\'' +
+                ", commentTime=" + commentTime +
+                ", commentTargetId=" + commentTargetId +
+                ", commentType=" + commentType +
+                ", commentUser=" + commentUser +
+                ", replyUser=" + replyUser +
+                '}';
+    }
+
     public int getCommentId() {
         return commentId;
     }

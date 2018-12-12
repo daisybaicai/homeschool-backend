@@ -13,4 +13,8 @@
         FROM comment
         WHERE comment_id= #{commentTargetId}
     </select>
+    <insert id="sendComment" parameterType="com.cdl.demo.domain.Comment" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO comment(comment_news_id, comment_user_id, comment_content, comment_target_id,comment_type)
+        VALUES (#{commentNewsId}, #{commentUserId}, #{commentContent}, #{commentTargetId}, #{commentType})
+    </insert>
 </mapper>
