@@ -82,6 +82,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public String getUserPasswordByUserName(String userName) {
+        return userDao.queryUserPasswordByUserName(userName);
+    }
+
+    @Override
     public int updateUserPassword(int userId, String userPassword) {
         return userDao.updateUserPassword(userId, userPassword);
     }
@@ -103,5 +108,10 @@ public class UserServiceImpl implements UserService{
             map.put(type, userDao.queryUserRegisterAmountByType(type));
         }
         return map;
+    }
+
+    @Override
+    public int deleteUser(int userId) {
+        return userDao.deleteUser(userId);
     }
 }

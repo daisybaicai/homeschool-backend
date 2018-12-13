@@ -40,6 +40,12 @@
         WHERE user_id=#{userId}
     </select>
 
+    <select id="queryUserPasswordByUserName" resultType="String">
+        SELECT user_password
+        FROM user
+        WHERE user_name=#{userName}
+    </select>
+
     <select id="queryUserRegisterAmountByMonth" resultType="int">
         SELECT count(*)
         FROM user
@@ -67,4 +73,8 @@
         SET user_password=#{userPassword}
         WHERE user_id=#{userId}
     </update>
+
+    <delete id="deleteUser">
+        DELETE FROM user WHERE user_id=${userId}
+    </delete>
 </mapper>

@@ -58,7 +58,6 @@ public class UserController {
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf('.'));
         String newFileName = userId + "_" + new Date().getTime() + suffix;
-//        String abp = ResourceUtils.getURL("src/main/resources").getPath();
         String abp = ResourceUtils.getURL("classpath:static/img/userHead").getPath();
         String path = abp + "/" + newFileName;
         File newFile = new File(path);
@@ -86,9 +85,22 @@ public class UserController {
         return new Result<>(ResultEnum.SUCCESS, code);
     }
 
-    @GetMapping(value = "/password")
-    public Result queryUserPasswordById(int userId) {
+    @GetMapping(value = "/forgetPasswordCode")
+    public Result getForgetPasswordCode(String email) {
+        myMailer.createServer();
+        int code = myMailer.addForgetPasswordEmail(email);
+        myMailer.sendMessage();
+        return new Result<>(ResultEnum.SUCCESS, code);
+    }
+
+    @GetMapping(value = "/password", params = "userId")
+    public Result getUserPasswordById(int userId) {
         return new Result<>(ResultEnum.SUCCESS, userService.getUserPasswordById(userId));
+    }
+
+    @GetMapping(value = "/password", params = "userName")
+    public Result getUserPasswordByUserName(String userName) {
+        return new Result<>(ResultEnum.SUCCESS, userService.getUserPasswordByUserName(userName));
     }
 
     @PutMapping(value = "/password")
@@ -104,5 +116,10 @@ public class UserController {
     @GetMapping(value = "/typeAmount")
     public Result getUserRegisterAmountByType() {
         return new Result<>(ResultEnum.SUCCESS, userService.getUserRegisterAmountByType());
+    }
+
+    @DeleteMapping(value = "")
+    public Result deleteUser(int userId) {
+        return new Result<>(ResultEnum.SUCCESS, userService.deleteUser(userId));
     }
 }

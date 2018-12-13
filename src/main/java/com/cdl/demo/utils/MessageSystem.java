@@ -35,7 +35,7 @@ public class MessageSystem {
             return  new Result<>(ResultEnum.SUCCESS, messageList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return new Result(ResultEnum.MESSGAE_EMPTY);
+            return new Result(ResultEnum.MESSAGE_EMPTY);
         }
     }
 

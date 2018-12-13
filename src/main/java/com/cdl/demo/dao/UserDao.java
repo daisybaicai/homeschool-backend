@@ -16,9 +16,11 @@ public interface UserDao {
                                              @Param("userType") String userType);
     List<User> queryUserByClassId(@Param("classId") int classId);
     String queryUserPasswordById(@Param("userId") int userId);
+    String queryUserPasswordByUserName(@Param("userName") String userName);
     int queryUserRegisterAmountByMonth(@Param("month") int month);
     int queryUserRegisterAmountByType(@Param("type") String type);
     int addUser(User user);
     int updateUserHead(@Param("userId") int userId,@Param("userHeadUrl") String userHeadUrl);
     int updateUserPassword(@Param("userId") int userId,@Param("userPassword") String userPassword);
+    int deleteUser(@Param("userId") int userId);
 }
