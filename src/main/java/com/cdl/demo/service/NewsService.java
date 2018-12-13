@@ -9,7 +9,9 @@ public interface NewsService {
     List<News> getNewsByUserId(int userId);
     News getNewsByNewsId(int newsId);
     List getNewsAmountAllMonth();
-    List<News> getNewsAllByUserIds(int userId);
 
+    List<News> getNewsAllByUserIds(int userId);
     String insertNews(News news);
+
+    News getDetailNewsByNewsId(int newsId);
 }
