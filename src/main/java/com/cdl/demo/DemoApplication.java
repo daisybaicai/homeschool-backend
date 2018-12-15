@@ -8,6 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @MapperScan("com.cdl.demo.dao")
+@EnableScheduling
+@EnableCaching
 public class DemoApplication {
 
 	public static void main(String[] args) {
