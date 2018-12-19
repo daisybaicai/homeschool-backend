@@ -1,10 +1,14 @@
 package com.cdl.demo.controller;
 
+import com.cdl.demo.domain.Like;
 import com.cdl.demo.domain.News;
 import com.cdl.demo.domain.Result;
 import com.cdl.demo.enums.ResultEnum;
 import com.cdl.demo.service.NewsService;
+import com.cdl.demo.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/news")
@@ -21,6 +27,15 @@ public class NewsController {
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private RedisTemplate<Object,Object> template;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RedisService redisService;
 
     @GetMapping(value = "/{newsId}")
     public Result<News> getNewsByNewsId(@PathVariable int newsId) {
@@ -50,6 +65,63 @@ public class NewsController {
     @GetMapping(value = "/monthAmount")
     public Result getNewsAmountAllMonth() {
         return new Result<>(ResultEnum.SUCCESS, newsService.getNewsAmountAllMonth());
+    }
+
+    @RequestMapping(value = "/sendZan", method = RequestMethod.POST)
+    public Result sendZan(Like like, HttpServletRequest request) {
+//        System.out.println("like--------request得到的");
+////        String likeNewsId=request.getParameter("likeNewsId");
+////        String likeUserId=request.getParameter("likeUserId");
+////        String likeType=request.getParameter("likeType");
+////        System.out.println(likeNewsId);
+////        System.out.println(likeUserId);
+////        System.out.println(likeType);
+////        String likeone = likeNewsId+"|"+likeUserId+"|"+likeType;
+////        String likeone1 = 14+"|"+21+"|"+0;
+////        Like like1 = new Like();
+////        like1.setLikeNewsId(1);
+////        like1.setLikeUserId(22);
+////        like1.setLikeType(0);
+////        redisTemplate.opsForValue().set("listlike", likeone);
+////        redisTemplate.opsForValue().set("listlike",likeone1);
+////        System.out.println(redisTemplate.opsForValue().get("listlike"));
+////        template.opsForValue().set("like",like);
+////        Like result = (Like) template.opsForValue().get("like");
+////
+////        redisService.setAdd("mylike",like);
+////        redisService.setAdd("mylike",like1);
+////
+////        System.out.println("set");
+////        Set<Object> set =  redisService.setMembers("mylike");
+////        for (Object like2 : set) {
+////            Like like3 = (Like)like2;
+////            System.out.println(like3.getLikeNewsId());
+////        }
+////        System.out.println("----------like打印");
+////        System.out.println("like"+like);
+////        System.out.println("like"+like1);
+//        System.out.println("------打印完毕");
+
+        //用set取得完以后
+//        System.out.println("settttt");
+//        redisService.zAdd("setlike",like.toString(),1);
+//        Set<Object> set2 =  redisService.setMembers("setlike");
+//        for (Object like2 : set2) {
+//            Like like3 = (Like)like2;
+//            System.out.println(like3.getLikeNewsId());
+//        }
+
+        System.out.println("------list");
+        redisService.push("mylist",like);
+        List<Object> list =redisService.range("mylist",1,10);
+        for (Object like4:list
+             ) {
+            Like like5 = (Like) like4;
+            System.out.println(like5);
+        }
+        System.out.println("长度"+redisService.getListLength("mylist"));
+
+        return new Result(ResultEnum.SUCCESS,"ok");
     }
 
     @RequestMapping(value = "/sendnews", method = RequestMethod.POST)

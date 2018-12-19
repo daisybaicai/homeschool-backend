@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.AccuseDao">
+    <insert id="addAccuse" parameterType="com.cdl.demo.domain.Accusation">
+        insert into accusation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accusationUserId != null">
+                accusation_user_id,
+            </if>
+            <if test="accusationType != null">
+                accusation_type,
+            </if>
+            <if test="accusationNewsId != null and accusationNewsId > 0">
+                accusation_news_id,
+            </if>
+            <if test="accusationCommentId != null and accusationCommentId > 0">
+                accusation_comment_id,
+            </if>
+            <if test="accusationIntro != null">
+                accusation_intro
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="accusationUserId != null">
+                #{accusationUserId,jdbcType=INTEGER},
+            </if>
+            <if test="accusationType != null">
+                #{accusationType,jdbcType=VARCHAR},
+            </if>
+            <if test="accusationNewsId != null and accusationNewsId > 0">
+                #{accusationNewsId,jdbcType=INTEGER},
+            </if>
+            <if test="accusationCommentId != null and accusationCommentId > 0">
+                #{accusationCommentId,jdbcType=INTEGER},
+            </if>
+            <if test="accusationIntro != null">
+                #{accusationIntro,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </insert>
+</mapper>
