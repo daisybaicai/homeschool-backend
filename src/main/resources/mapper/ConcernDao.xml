@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.ConcernDao">
+
+    <select id="getUserStarConcern" resultMap="ConcernResultMap">
+        SELECT concern.id,concern.concern_id,concern.concerned_id,concern.starconcern,user.user_id, user.user_name, user.user_password, user.user_type, user.user_head_url, user.user_cover_url, user.user_nickname,user.user_register_time, user.user_class_id
+        FROM concern ,user
+        WHERE concern.concern_id=#{userId} and concern.starconcern = '2' and concern.concerned_id= user.user_id
+    </select>
+
+
+    <select id="getUserAllConcern" resultMap="ConcernResultMap">
+        SELECT concern.id,concern.concern_id,concern.concerned_id,concern.starconcern,user.user_id, user.user_name, user.user_password, user.user_type, user.user_head_url, user.user_cover_url, user.user_nickname,user.user_register_time, user.user_class_id
+        FROM concern ,user
+        WHERE concern.concern_id=#{userId} and concern.concerned_id= user.user_id
+    </select>
+
+    <select id="getAllUser" resultType="com.cdl.demo.domain.User">
+        SELECT distinct  user.user_id, user.user_name, user.user_password, user.user_type, user.user_head_url, user.user_cover_url, user.user_nickname,user.user_register_time, user.user_class_id
+        FROM user,concern
+        WHERE user_id!=#{userId} AND user.user_id != all(
+        SELECT concerned_id FROM concern WHERE concern_id= #{userId}
+        )
+    </select>
+    <resultMap id="ConcernResultMap" type="com.cdl.demo.domain.Concern">
+        <id property="id" column="id"/>
+        <result property="concernId" column="concern_id"/>
+        <result property="concernedId" column="concerned_id"/>
+        <result property="starConcern" column="starconcern"/>
+
+        <association property="user1" javaType="com.cdl.demo.domain.User">
+            <id property="userId" column="user_id"/>
+            <result property="userName" column="user_name"/>
+            <result property="userType" column="user_type"/>
+            <result property="userHeadUrl" column="user_head_url"/>
+            <result property="userNickname" column="user_nickname"/>
+            <result property="userClassId" column="user_class_id"/>
+        </association>
+    </resultMap>
+
+    <update id="removeConcernsStar">
+        update
+        concern
+        set starconcern= '1'
+        where concern_id=#{userId} and concerned_id=#{concernedId}
+    </update>
+
+    <update id="sendConcernStar">
+        update
+        concern
+        set starconcern= '2'
+        where concern_id=#{userId} and concerned_id=#{concernedId}
+    </update>
+
+    <delete id="deleteConcern">
+        DELETE FROM concern WHERE concern_id=#{userId} and concerned_id=#{concernedId}
+    </delete>
+
+    <insert id="sendConcern">
+        INSERT
+        INTO
+        concern(concern_id,concerned_id,starconcern)
+        VALUES (#{userId}, #{concernedId},'1')
+    </insert>
+</mapper>
