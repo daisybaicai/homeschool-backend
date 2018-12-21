@@ -3,6 +3,7 @@ package com.cdl.demo.controller;
 import com.cdl.demo.domain.Result;
 import com.cdl.demo.domain.User;
 import com.cdl.demo.enums.ResultEnum;
+import com.cdl.demo.service.RedisService;
 import com.cdl.demo.service.UserService;
 import com.cdl.demo.utils.MyMailer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    @Autowired
+    private RedisService redisService;
 
     @Autowired
     private MyMailer myMailer;
@@ -90,7 +94,8 @@ public class UserController {
         myMailer.createServer();
         int code = myMailer.addForgetPasswordEmail(email);
         myMailer.sendMessage();
-        return new Result<>(ResultEnum.SUCCESS, code);
+        redisService.set("verificationCode:" + email, code, (long) (10 * 60));
+        return new Result<>(ResultEnum.SUCCESS, null);
     }
 
     @GetMapping(value = "/password", params = "userId")

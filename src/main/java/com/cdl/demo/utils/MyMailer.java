@@ -1,5 +1,7 @@
 package com.cdl.demo.utils;
 
+import com.cdl.demo.service.RedisService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.mail.*;
@@ -32,7 +34,7 @@ public class MyMailer {
             mimeMessage.setFrom(new InternetAddress("951045989@qq.com", "家校通", "UTF-8"));
             mimeMessage.setSubject("[家校通]邮箱验证码");
             int code = (int)((Math.random()*9+1)*100000);
-            mimeMessage.setContent("欢迎注册家校通您的验证码是：" + code, "text/html;charset=utf-8");
+            mimeMessage.setContent("欢迎注册家校通您的验证码是：" + code , "text/html;charset=utf-8");
             return code;
         } catch (MessagingException | UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -47,7 +49,7 @@ public class MyMailer {
             mimeMessage.setFrom(new InternetAddress("951045989@qq.com", "家校通", "UTF-8"));
             mimeMessage.setSubject("[家校通]邮箱验证码");
             int code = (int)((Math.random()*9+1)*100000);
-            mimeMessage.setContent("您的验证码是：" + code, "text/html;charset=utf-8");
+            mimeMessage.setContent("您的验证码是：" + code + "有效期为10分钟，请尽快使用", "text/html;charset=utf-8");
             return code;
         } catch (MessagingException | UnsupportedEncodingException e) {
             e.printStackTrace();

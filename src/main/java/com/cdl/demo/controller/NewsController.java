@@ -121,7 +121,7 @@ public class NewsController {
         }
         System.out.println("长度"+redisService.getListLength("mylist"));
 
-        return new Result(ResultEnum.SUCCESS,"ok");
+        return new Result<>(ResultEnum.SUCCESS,"ok");
     }
 
     @RequestMapping(value = "/sendnews", method = RequestMethod.POST)
