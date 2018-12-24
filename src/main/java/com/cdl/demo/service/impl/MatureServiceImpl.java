@@ -1,19 +1,11 @@
 package com.cdl.demo.service.impl;
 
 import com.cdl.demo.dao.MatureDao;
-import com.cdl.demo.dao.NewsDao;
-import com.cdl.demo.dao.UserDao;
-import com.cdl.demo.domain.Comment;
 import com.cdl.demo.domain.Mature;
-import com.cdl.demo.domain.News;
-import com.cdl.demo.domain.User;
-import com.cdl.demo.service.CommentService;
 import com.cdl.demo.service.MatureService;
-import com.cdl.demo.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,13 +25,25 @@ public class MatureServiceImpl implements MatureService {
     }
 
     @Override
-    public Mature addMature(Mature mature) {
-        if (matureDao.sendMature(mature) == 1) {
-            return mature;
-        } else  {
-            return  null;
-        }
+    public List<Mature> getMatureByGroup(int userId, String grouping) {
+        return matureDao.getMatureByGroup(userId,grouping);
     }
 
+    @Override
+    public List<Mature> getMatureByNewsUserId(int userId, int newsUserId) {
+        return matureDao.getMatureByNewsUserId(userId,newsUserId);
+
+    }
+
+    @Override
+    public int addMature(Mature mature) {
+
+            return matureDao.sendMature(mature);
+    }
+
+    @Override
+    public int deleteMature(Mature mature) {
+       return matureDao.deleteMature(mature);
+    }
 
 }

@@ -33,14 +33,27 @@ public class MatureController {
 
 
 //    根据时间查找成长线记录
-    @GetMapping(value = "/get/{newsId}")
-    public Result<List<Mature>> getMatureByTime(@PathVariable int userId,@PathVariable String startTime,@PathVariable String endTime) {
+    @GetMapping(value = "/getMatureByTime", params = {"userId", "startTime","endTime"})
+    public Result<List<Mature>> getMatureByTime(int userId,String startTime,String endTime) {
         return new Result<List<Mature>>(ResultEnum.SUCCESS, matureService.getMatureByTime(userId,startTime,endTime));
     }
 
+    //    根据分组查找成长线记录
+    @GetMapping(value = "/getMatureByGroup", params = {"userId", "grouping"})
+    public Result<List<Mature>> getMatureByGroup(int userId,String grouping) {
+        return new Result<List<Mature>>(ResultEnum.SUCCESS, matureService.getMatureByGroup(userId,grouping));
+    }
+
+    //    根据动态的发布人查找成长线记录
+    @GetMapping(value = "/getMatureByNewsUserId", params = {"userId", "newsUserId"})
+    public Result<List<Mature>> getMatureByNewsUserId(int userId,int newsUserId) {
+        return new Result<List<Mature>>(ResultEnum.SUCCESS, matureService.getMatureByNewsUserId(userId,newsUserId));
+    }
+
+
 //    往成长线中添加记录
     @PostMapping(value = "")
-    public Result<Mature> addUser(@Valid @RequestBody Mature mature, BindingResult bindingResult) {
+    public Result addUser(@Valid @RequestBody Mature mature, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new Result<>(-1,bindingResult.getFieldError().getDefaultMessage());
         }
@@ -49,6 +62,13 @@ public class MatureController {
 
         }
     }
+
+    //从成长线中删除一条记录
+    @PostMapping(value = "/deleteMature")
+    public Result deleteUser(@Valid @RequestBody Mature mature) {
+        return new Result<>(ResultEnum.SUCCESS, matureService.deleteMature(mature));
+    }
+
 
 }
 
