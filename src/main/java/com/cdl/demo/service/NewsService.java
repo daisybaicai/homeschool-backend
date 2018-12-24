@@ -11,6 +11,13 @@ public interface NewsService {
     List getNewsAmountAllMonth();
 
     List<News> getNewsAllByUserIds(int userId);
+
+    List<News> accordingTime(int userId);
+
+    List<News> accordingClass(int userId);
+    List<News> accordingConcern(int userId);
+    List<News> accordingLike(int userId);
+    List<News> getNewByUserId(int userId);
     String insertNews(News news);
 
     News getDetailNewsByNewsId(int newsId);

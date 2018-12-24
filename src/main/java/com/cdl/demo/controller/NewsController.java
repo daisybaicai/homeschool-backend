@@ -67,6 +67,31 @@ public class NewsController {
         return new Result<>(ResultEnum.SUCCESS, newsService.getNewsAmountAllMonth());
     }
 
+    @GetMapping(value = "/accordingTime/{userId}")
+    public Result<List<News>> accordingTime(@PathVariable int userId) {
+        return new Result<List<News>>(ResultEnum.SUCCESS, newsService.accordingTime(userId));
+    }
+
+    @GetMapping(value = "/accordingClass/{userId}")
+    public Result<List<News>> accordingClass(@PathVariable int userId) {
+        return new Result<List<News>>(ResultEnum.SUCCESS, newsService.accordingClass(userId));
+    }
+
+    @GetMapping(value = "/accordingConcern/{userId}")
+    public Result<List<News>> accordingConcern(@PathVariable int userId) {
+        return new Result<List<News>>(ResultEnum.SUCCESS, newsService.accordingConcern(userId));
+    }
+
+    @GetMapping(value = "/accordingLike/{userId}")
+    public Result<List<News>> accordingLike(@PathVariable int userId) {
+        return new Result<List<News>>(ResultEnum.SUCCESS, newsService.accordingLike(userId));
+    }
+
+    @GetMapping(value = "getNewByUserId/{userId}")
+    public Result<List<News>> getNewByUserId(@PathVariable int userId){
+        return new Result<List<News>>(ResultEnum.SUCCESS, newsService.getNewByUserId(userId));
+    }
+
     @RequestMapping(value = "/sendZan", method = RequestMethod.POST)
     public Result sendZan(Like like, HttpServletRequest request) {
 //        System.out.println("like--------request得到的");
