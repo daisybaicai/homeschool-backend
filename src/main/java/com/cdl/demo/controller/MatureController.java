@@ -35,19 +35,19 @@ public class MatureController {
 //    根据时间查找成长线记录
     @GetMapping(value = "/getMatureByTime", params = {"userId", "startTime","endTime"})
     public Result<List<Mature>> getMatureByTime(int userId,String startTime,String endTime) {
-        return new Result<List<Mature>>(ResultEnum.SUCCESS, matureService.getMatureByTime(userId,startTime,endTime));
+        return new Result<>(ResultEnum.SUCCESS, matureService.getMatureByTime(userId,startTime,endTime));
     }
 
     //    根据分组查找成长线记录
     @GetMapping(value = "/getMatureByGroup", params = {"userId", "grouping"})
     public Result<List<Mature>> getMatureByGroup(int userId,String grouping) {
-        return new Result<List<Mature>>(ResultEnum.SUCCESS, matureService.getMatureByGroup(userId,grouping));
+        return new Result<>(ResultEnum.SUCCESS, matureService.getMatureByGroup(userId,grouping));
     }
 
     //    根据动态的发布人查找成长线记录
     @GetMapping(value = "/getMatureByNewsUserId", params = {"userId", "newsUserId"})
     public Result<List<Mature>> getMatureByNewsUserId(int userId,int newsUserId) {
-        return new Result<List<Mature>>(ResultEnum.SUCCESS, matureService.getMatureByNewsUserId(userId,newsUserId));
+        return new Result<>(ResultEnum.SUCCESS, matureService.getMatureByNewsUserId(userId,newsUserId));
     }
 
 
