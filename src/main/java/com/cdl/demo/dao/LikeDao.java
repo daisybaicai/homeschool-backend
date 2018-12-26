@@ -9,6 +9,6 @@ import java.util.List;
 public interface LikeDao {
 
     int sendLike(Like like);
-
     int delteLike(Like like);
+    List<Like> queryLikeByNewsId(@Param("likeNewsId") int likeNewsId);
 }

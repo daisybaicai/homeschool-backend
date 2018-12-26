@@ -11,4 +11,9 @@
         DELETE FROM `like`
         WHERE like_user_id =#{likeUserId} and  like_news_id = #{likeNewsId}
     </delete>
+    <select id="queryLikeByNewsId" resultType="com.cdl.demo.domain.Like">
+        SELECT like_user_id
+        from `like`
+        where like_news_id=#{likeNewsId}
+    </select>
 </mapper>

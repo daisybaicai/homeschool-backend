@@ -1,8 +1,10 @@
 package com.cdl.demo.service.impl;
 
+import com.cdl.demo.dao.LikeDao;
 import com.cdl.demo.dao.NewsDao;
 import com.cdl.demo.dao.UserDao;
 import com.cdl.demo.domain.Comment;
+import com.cdl.demo.domain.Like;
 import com.cdl.demo.domain.News;
 import com.cdl.demo.domain.User;
 import com.cdl.demo.service.CommentService;
@@ -22,6 +24,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private NewsDao newsDao;
+
+    @Autowired
+    private LikeDao likeDao;
 
     @Autowired
     private CommentService commentService;
@@ -171,6 +176,15 @@ public class NewsServiceImpl implements NewsService {
         List<Comment> comment = commentService.queryCommentByNewsId(newsId);
         news.setNewsUser(user);
         news.setNewsComment(comment);
+        List userList = likeDao.queryLikeByNewsId(newsId);
+        System.out.println("userlist" + userList);
+        List<User> likeUsers = new ArrayList<>();
+        for (int i = 0; i < userList.size(); i++) {
+            Like like = (Like) userList.get(i);
+            User likeuser = userDao.queryUserById(like.getLikeUserId());
+            likeUsers.add(likeuser);
+        }
+        news.setNewsLikeUser(likeUsers);
         return news;
     }
 }
