@@ -9,12 +9,12 @@
         WHERE news_upload_time BETWEEN #{startTime} AND #{endTime}
     </select>
     <select id="queryNewsByUserId" resultType="com.cdl.demo.domain.News">
-        SELECT news_id, news_user_id, news_content, news_upload_time
+        SELECT news_id, news_user_id, news_content, news_upload_time, news_imageURLs, news_videoURLs
         FROM news
         WHERE news_user_id=#{userId}
     </select>
     <select id="queryNewsByNewsId" resultType="com.cdl.demo.domain.News">
-        SELECT news_id, news_user_id, news_content, news_upload_time
+        SELECT news_id, news_user_id, news_content, news_upload_time, news_imageURLs, news_videoURLs
         FROM news
         WHERE news_id=#{newsId}
     </select>
@@ -29,16 +29,14 @@
         WHERE like_news_id=#{newsId}
     </select>
     <select id="queryNewsAll" resultType="com.cdl.demo.domain.News">
-        SELECT news_id, news_user_id, news_content, news_upload_time, news_content
+        SELECT news_id, news_user_id, news_content, news_upload_time, news_content, news_imageURLs, news_videoURLs
         FROM news
     </select>
-
     <select id="queryNewsLike" resultType="int">
         SELECT count(*)
         FROM `like`
         WHERE like_news_id=#{newsId} AND like_user_id=#{userId}
     </select>
-
     <insert id="insertNews" parameterType="com.cdl.demo.domain.News" useGeneratedKeys="true" keyProperty="newId">
         INSERT
         INTO
@@ -47,13 +45,13 @@
     </insert>
 
     <select id="accordingTime" resultType="com.cdl.demo.domain.News">
-        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content
+        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content,news_imageURLs, news_videoURLs
         FROM news
         ORDER BY news_upload_time DESC
     </select>
 
     <select id="accordingClass" resultType="com.cdl.demo.domain.News">
-        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content FROM news
+        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content, news_imageURLs, news_videoURLs FROM news
         WHERE news_user_id = any (
         SELECT user_id FROM `user` WHERE user.user_class_id=
           (
@@ -63,7 +61,7 @@
     </select>
 
     <select id="accordingConcern" resultType="com.cdl.demo.domain.News">
-        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content
+        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content, news_imageURLs, news_videoURLs
         FROM news, concern
         where news_user_id= ANY (
         SELECT concerned_id FROM concern WHERE concern_id=#{userId}
@@ -71,7 +69,7 @@
     </select>
 
     <select id="accordingLike" resultType="com.cdl.demo.domain.News">
-        SELECT news_id, news_user_id, news_content, news_upload_time, news_content FROM news,`like` WHERE
+        SELECT news_id, news_user_id, news_content, news_upload_time, news_content, news_imageURLs, news_videoURLs FROM news,`like` WHERE
         news.news_id = `like`.like_news_id
         GROUP BY `like`.like_news_id
         ORDER BY count(*) DESC

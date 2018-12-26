@@ -11,4 +11,6 @@ public interface LikeService {
     int sendLike(Like like);
 
     int delteLike(Like like);
+
+    List<Like> queryLikeByNewsId(int likeNewsId);
 }

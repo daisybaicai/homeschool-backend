@@ -207,13 +207,13 @@ public class NewsController {
             picture.transferTo(targetFile);
             System.out.println("上传成功");
             //将文件在服务器的存储路径返
-                String pathes ="/upload/" + fileName;
-                return new Result<>(ResultEnum.SUCCESS,pathes);
+                String pathes ="newsPic/" + fileName;
+                return new Result<>(ResultEnum.SUCCESS,fileName);
                 } catch (IOException e) {
                 System.out.println("上传失败");
                 e.printStackTrace();
                 String mess= "上传失败";
-                return new Result<>(ResultEnum.SUCCESS,mess);
+                return new Result<>(ResultEnum.SUCCESS,fileName);
                 }
             }
 }

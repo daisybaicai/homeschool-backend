@@ -17,7 +17,6 @@ public class AccuseController {
     private AccuseService accuseService;
     @PostMapping(value = "addAccuse")
     public Result addAccuse(Accusation accusation) {
-        System.out.println(accusation);
         return new Result(0, "chengong",accuseService.addAccuse(accusation));
     }
 }

@@ -1,5 +1,6 @@
 package com.cdl.demo.dao;
 
+import com.cdl.demo.domain.Like;
 import com.cdl.demo.domain.News;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -20,7 +21,7 @@ public interface NewsDao {
     List<News> accordingClass(@Param("userId") int userId);
     List<News> accordingConcern(@Param("userId") int userId);
     List<News> accordingLike();
-    int queryNewsLike(@Param("newsId") Integer newsId, @Param("userId") int userId);
+    int queryNewsLike(@Param("newsId") int newsId, @Param("userId") int userId);
 
     int insertNews(News news);
 }
