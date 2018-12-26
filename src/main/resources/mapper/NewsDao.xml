@@ -32,15 +32,48 @@
         SELECT news_id, news_user_id, news_content, news_upload_time, news_content
         FROM news
     </select>
+
     <select id="queryNewsLike" resultType="int">
         SELECT count(*)
         FROM `like`
         WHERE like_news_id=#{newsId} AND like_user_id=#{userId}
     </select>
+
     <insert id="insertNews" parameterType="com.cdl.demo.domain.News" useGeneratedKeys="true" keyProperty="newId">
         INSERT
         INTO
         news(news_user_id,news_content,news_imageURLs,news_videoURLs)
         VALUES (#{newsUserId}, #{newsContent}, #{newsImageURLs}, #{newsVideoURLs})
     </insert>
+
+    <select id="accordingTime" resultType="com.cdl.demo.domain.News">
+        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content
+        FROM news
+        ORDER BY news_upload_time DESC
+    </select>
+
+    <select id="accordingClass" resultType="com.cdl.demo.domain.News">
+        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content FROM news
+        WHERE news_user_id = any (
+        SELECT user_id FROM `user` WHERE user.user_class_id=
+          (
+              SELECT user_class_id FROM `user` WHERE user_id=#{userId}
+          )
+        )
+    </select>
+
+    <select id="accordingConcern" resultType="com.cdl.demo.domain.News">
+        SELECT DISTINCT news_id, news_user_id, news_content, news_upload_time, news_content
+        FROM news, concern
+        where news_user_id= ANY (
+        SELECT concerned_id FROM concern WHERE concern_id=#{userId}
+          )
+    </select>
+
+    <select id="accordingLike" resultType="com.cdl.demo.domain.News">
+        SELECT news_id, news_user_id, news_content, news_upload_time, news_content FROM news,`like` WHERE
+        news.news_id = `like`.like_news_id
+        GROUP BY `like`.like_news_id
+        ORDER BY count(*) DESC
+    </select>
 </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.PersonalInformationDao">
+    <select id="getInformationByUserId" resultType="com.cdl.demo.domain.PersonalInformation">
+        SELECT user_id,jianjie,sex,phone,work,address,interest
+        FROM personalInformation
+        WHERE user_id=#{userId}
+    </select>
+    <update id="changeJianjie">
+        update
+        personalInformation
+        set jianjie=#{jianjie} where user_id=#{userId}
+    </update>
+    <update id="changeAddress">
+        update
+        personalInformation
+        set address=#{address} where user_id=#{userId}
+    </update>
+    <update id="changePhone">
+        update
+        personalInformation
+        set phone=#{phone} where user_id=#{userId}
+    </update>
+    <update id="changeInterest">
+        update
+        personalInformation
+        set interest=#{interest} where user_id=#{userId}
+    </update>
+    <update id="changeWork">
+        update
+        personalInformation
+        set work=#{work} where user_id=#{userId}
+    </update>
+</mapper>

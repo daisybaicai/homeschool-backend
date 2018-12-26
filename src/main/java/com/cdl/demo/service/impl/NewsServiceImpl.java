@@ -74,6 +74,86 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public List<News> accordingTime(int userId) {
+        List<News> news = newsDao.accordingTime();
+        for (int i = 0; i < news.size(); i++) {
+            News onenews = news.get(i);
+            int newsid = onenews.getNewsId();
+            User user = userDao.queryUserById(onenews.getNewsUserId());
+            onenews.setNewsUser(user);
+            int likeornotlike = newsDao.queryNewsLike(newsid,userId);
+            onenews.setNewsLikeornotlike(likeornotlike);
+            int likenum = newsDao.queryLikeCount(newsid);
+            onenews.setNewLikeNum(likenum);
+        }
+        return news;
+    }
+
+    @Override
+    public List<News> accordingClass(int userId) {
+        List<News> news = newsDao.accordingClass(userId);
+        for (int i = 0; i < news.size(); i++) {
+            News onenews = news.get(i);
+            int newsid = onenews.getNewsId();
+            User user = userDao.queryUserById(onenews.getNewsUserId());
+            onenews.setNewsUser(user);
+            int likeornotlike = newsDao.queryNewsLike(newsid,userId);
+            onenews.setNewsLikeornotlike(likeornotlike);
+            int likenum = newsDao.queryLikeCount(newsid);
+            onenews.setNewLikeNum(likenum);
+        }
+        return news;
+    }
+
+    @Override
+    public List<News> accordingConcern(int userId) {
+        List<News> news = newsDao.accordingConcern( userId);
+        for (int i = 0; i < news.size(); i++) {
+            News onenews = news.get(i);
+            int newsid = onenews.getNewsId();
+            User user = userDao.queryUserById(onenews.getNewsUserId());
+            onenews.setNewsUser(user);
+            int likeornotlike = newsDao.queryNewsLike(newsid,userId);
+            onenews.setNewsLikeornotlike(likeornotlike);
+            int likenum = newsDao.queryLikeCount(newsid);
+            onenews.setNewLikeNum(likenum);
+        }
+        return news;
+    }
+
+    @Override
+    public List<News> accordingLike(int userId) {
+        List<News> news = newsDao.accordingLike();
+        for (int i = 0; i < news.size(); i++) {
+            News onenews = news.get(i);
+            int newsid = onenews.getNewsId();
+            User user = userDao.queryUserById(onenews.getNewsUserId());
+            onenews.setNewsUser(user);
+            int likeornotlike = newsDao.queryNewsLike(newsid,userId);
+            onenews.setNewsLikeornotlike(likeornotlike);
+            int likenum = newsDao.queryLikeCount(newsid);
+            onenews.setNewLikeNum(likenum);
+        }
+        return news;
+    }
+
+    @Override
+    public List<News> getNewByUserId(int userId) {
+        List<News> news = newsDao.queryNewsByUserId(userId);
+        for (int i = 0; i < news.size(); i++) {
+            News onenews = news.get(i);
+            int newsid = onenews.getNewsId();
+            User user = userDao.queryUserById(onenews.getNewsUserId());
+            onenews.setNewsUser(user);
+            int likeornotlike = newsDao.queryNewsLike(newsid,userId);
+            onenews.setNewsLikeornotlike(likeornotlike);
+            int likenum = newsDao.queryLikeCount(newsid);
+            onenews.setNewLikeNum(likenum);
+        }
+        return news;
+    }
+
+    @Override
     public String insertNews(News news) {
         String result = null;
         if (newsDao.insertNews(news) == 1){

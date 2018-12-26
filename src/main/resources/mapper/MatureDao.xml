@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdl.demo.dao.MatureDao">
+
+    <select id="getMatureByTime" resultMap="MatureResultMap">
+       SELECT mature.news_id,mature.user_id,mature.grouping,mature.comment,mature.insert_time,
+        news.news_user_id,news.news_content,news.news_upload_time,news.news_imageURLs,news.news_videoURLs
+        FROM mature,news
+        WHERE user_id = #{userId} and  insert_time BETWEEN #{startTime} AND #{endTime} and news.news_id = mature.news_id
+    </select>
+
+
+    <select id="getMatureByGroup" resultMap="MatureResultMap">
+        SELECT mature.news_id,mature.user_id,mature.grouping,mature.comment,mature.insert_time,
+        news.news_user_id,news.news_content,news.news_upload_time,news.news_imageURLs,news.news_videoURLs
+        FROM mature,news
+        WHERE user_id = #{userId} and grouping = #{grouping} and news.news_id = mature.news_id
+    </select>
+
+    <select id="getMatureByNewsUserId" resultMap="MatureResultMap">
+        SELECT mature.news_id,mature.user_id,mature.grouping,mature.comment,mature.insert_time,
+        news.news_user_id,news.news_content,news.news_upload_time,news.news_imageURLs,news.news_videoURLs
+        FROM mature,news
+        WHERE user_id = #{userId}  and news.news_id = mature.news_id and news.news_user_id=#{newsUserId}
+    </select>
+
+    <resultMap id="MatureResultMap" type="com.cdl.demo.domain.Mature">
+        <id property="Id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="newsId" column="news_id"/>
+        <result property="grouping" column="grouping"/>
+        <result property="comment" column="comment"/>
+        <result property="insertTime" column="insert_time"/>
+
+        <association property="news" javaType="com.cdl.demo.domain.News">
+            <id property="newsId" column="news_id"/>
+            <result property="newsUserId" column="news_user_id"/>
+            <result property="newsContent" column="news_content"/>
+            <result property="newsUploadTime" column="news_upload_time"/>
+            <result property="newsImageURLs" column="news_imageURLs"/>
+            <result property="newsVideoURLs" column="news_videoURLs"/>
+        </association>
+    </resultMap>
+
+    <insert id="sendMature" parameterType="com.cdl.demo.domain.Mature">
+        INSERT INTO mature(news_id,user_id,grouping,comment,insert_time)
+        VALUES (#{newsId}, #{userId},#{grouping},#{comment},#{insertTime})
+    </insert>
+
+
+    <delete id="deleteMature">
+        DELETE FROM mature WHERE user_id=#{userId} and news_id=#{newsId}
+    </delete>
+
+
+</mapper>
