@@ -20,4 +20,6 @@ public class NotificationController {
     public Result getNotificationByClassId(int classId) {
         return new Result<>(ResultEnum.SUCCESS, notificationService.getNotificationByClassId(classId));
     }
+
+
 }

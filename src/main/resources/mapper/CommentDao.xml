@@ -17,4 +17,9 @@
         INSERT INTO comment(comment_news_id, comment_user_id, comment_content, comment_target_id,comment_type)
         VALUES (#{commentNewsId}, #{commentUserId}, #{commentContent}, #{commentTargetId}, #{commentType})
     </insert>
+    <select id="queryCommentCountByNewsId" resultType="int">
+        SELECT count(*)
+        FROM comment
+        where comment_news_id = #{newsId}
+    </select>
 </mapper>
