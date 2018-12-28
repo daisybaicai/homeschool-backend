@@ -23,6 +23,11 @@
         WHERE concern.concern_id=#{userId} and concern.starconcern = '2' and concern.concerned_id= user.user_id
     </select>
 
+    <select id="getUserAllFans" resultMap="ConcernResultMap">
+        SELECT concern.id,concern.concern_id,concern.concerned_id,concern.starconcern,user.user_id, user.user_name, user.user_password, user.user_type, user.user_head_url, user.user_cover_url, user.user_nickname,user.user_register_time, user.user_class_id
+        FROM concern ,user
+        WHERE concern.concerned_id=#{userId} and concern.concern_id= user.user_id
+    </select>
 
     <select id="getUserAllConcern" resultMap="ConcernResultMap">
         SELECT concern.id,concern.concern_id,concern.concerned_id,concern.starconcern,user.user_id, user.user_name, user.user_password, user.user_type, user.user_head_url, user.user_cover_url, user.user_nickname,user.user_register_time, user.user_class_id
@@ -77,4 +82,7 @@
         concern(concern_id,concerned_id,starconcern)
         VALUES (#{userId}, #{concernedId},'1')
     </insert>
+    <select id="fanshu" resultType="com.cdl.demo.domain.Concern">
+        select * from concern where concern_id=#{userId} and concerned_id=#{concernedId}
+    </select>
 </mapper>

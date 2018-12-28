@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ConcernService {
     List<Concern> getUserStarConcern(Integer userId);
+    List<Concern> getUserAllFans(Integer userId);
+
     List<Concern> getUserAllConcern(Integer userId);
     List<User> getAllUser(Integer userId);
     boolean removeConcernsStar(Integer userId, Integer concernedId);

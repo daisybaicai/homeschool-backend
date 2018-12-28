@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ConcernDao {
     List<Concern> getUserStarConcern(@Param("userId") int userId);
+    List<Concern> getUserAllFans(@Param("userId") int userId);
     List<Concern> getUserAllConcern(@Param("userId") int userId);
     List<User> getAllUser(@Param("userId") int userId);
     boolean removeConcernsStar(@Param("userId") int userId, @Param("concernedId") int concernedId);
@@ -16,4 +17,5 @@ public interface ConcernDao {
     boolean sendConcern(@Param("userId") int userId, @Param("concernedId") int concernedId);
     int getUserConcerenCount(@Param("userId") int userId);
     int getUserConcerenedCount(@Param("userId") int userId );
+    Concern fanshu(@Param("userId") String userId, @Param("concernedId") String concernedId);
 }
