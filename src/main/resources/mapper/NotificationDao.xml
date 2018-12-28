@@ -9,4 +9,11 @@
         WHERE notification_class_id=#{classId}
         ORDER BY notification_time DESC
     </select>
+    <select id="queryOneNotificationByClassId" resultType="com.cdl.demo.domain.Notification">
+        SELECT notification_class_id, notification_user_id, notification_title, notification_content, notification_time
+        FROM notification
+        WHERE notification_class_id=#{classId}
+        ORDER BY notification_time DESC
+        LIMIT 1
+    </select>
 </mapper>
