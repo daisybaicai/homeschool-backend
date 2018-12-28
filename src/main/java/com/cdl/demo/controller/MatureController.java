@@ -33,9 +33,9 @@ public class MatureController {
 
 
 //    根据时间查找成长线记录
-    @GetMapping(value = "/getMatureByTime", params = {"userId", "startTime","endTime"})
-    public Result<List<Mature>> getMatureByTime(int userId,String startTime,String endTime) {
-        return new Result<>(ResultEnum.SUCCESS, matureService.getMatureByTime(userId,startTime,endTime));
+    @GetMapping(value = "/getMatureByTime/{userId}")
+    public Result<List<Mature>> getMatureByTime(@PathVariable int userId) {
+        return new Result<>(ResultEnum.SUCCESS, matureService.getMatureByTime(userId));
     }
 
     //    根据分组查找成长线记录

@@ -16,12 +16,8 @@ public class MatureServiceImpl implements MatureService {
     private MatureDao matureDao;
 
     @Override
-    public List<Mature> getMatureByTime(int userId,String startTime, String endTime) {
-        long sTime = new Long(startTime);
-        long eTime = new Long(endTime);
-        Date sDate = new Date(sTime);
-        Date eDate = new Date(eTime);
-        return matureDao.getMatureByTime(userId,sDate,eDate);
+    public List<Mature> getMatureByTime(int userId) {
+        return matureDao.getMatureByTime(userId);
     }
 
     @Override
