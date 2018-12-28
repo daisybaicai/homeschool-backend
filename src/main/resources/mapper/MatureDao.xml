@@ -5,10 +5,11 @@
 <mapper namespace="com.cdl.demo.dao.MatureDao">
 
     <select id="getMatureByTime" resultMap="MatureResultMap">
-       SELECT mature.news_id,mature.user_id,mature.grouping,mature.comment,mature.insert_time,
+       SELECT distinct mature.news_id,mature.user_id,mature.grouping,mature.comment,mature.insert_time,
         news.news_user_id,news.news_content,news.news_upload_time,news.news_imageURLs,news.news_videoURLs
         FROM mature,news
-        WHERE user_id = #{userId} and  insert_time BETWEEN #{startTime} AND #{endTime} and news.news_id = mature.news_id
+        WHERE mature.user_id = #{userId} and news.news_id = mature.news_id
+        order by insert_time
     </select>
 
 

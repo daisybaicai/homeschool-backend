@@ -5,7 +5,7 @@ import com.cdl.demo.domain.Mature;
 import java.util.List;
 
 public interface MatureService {
-    List<Mature> getMatureByTime(int userId, String startTime, String endTime);
+    List<Mature> getMatureByTime(int userId);
     List<Mature> getMatureByGroup(int userId, String grouping);
     List<Mature> getMatureByNewsUserId(int userId, int newsUserId);
 
