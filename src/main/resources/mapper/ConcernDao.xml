@@ -4,6 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cdl.demo.dao.ConcernDao">
 
+    <select id="getUserConcerenCount" resultType="int">
+        SELECT COUNT(*)
+        FROM
+            concern
+        WHERE concern_id = #{userId}
+    </select>
+    <select id="getUserConcerenedCount" resultType="int">
+        SELECT COUNT(*)
+        FROM
+            concern
+        WHERE concerned_id = #{userId}
+    </select>
+
     <select id="getUserStarConcern" resultMap="ConcernResultMap">
         SELECT concern.id,concern.concern_id,concern.concerned_id,concern.starconcern,user.user_id, user.user_name, user.user_password, user.user_type, user.user_head_url, user.user_cover_url, user.user_nickname,user.user_register_time, user.user_class_id
         FROM concern ,user

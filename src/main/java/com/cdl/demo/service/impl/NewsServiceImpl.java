@@ -1,5 +1,6 @@
 package com.cdl.demo.service.impl;
 
+import com.cdl.demo.dao.CommentDao;
 import com.cdl.demo.dao.LikeDao;
 import com.cdl.demo.dao.NewsDao;
 import com.cdl.demo.dao.UserDao;
@@ -27,6 +28,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private LikeDao likeDao;
+
+    @Autowired
+    private CommentDao commentDao;
 
     @Autowired
     private CommentService commentService;
@@ -74,6 +78,8 @@ public class NewsServiceImpl implements NewsService {
             onenews.setNewsLikeornotlike(likeornotlike);
             int likenum = newsDao.queryLikeCount(newsid);
             onenews.setNewLikeNum(likenum);
+            int commentnum = commentDao.queryCommentCountByNewsId(newsid);
+            onenews.setNewsCommentNum(commentnum);
         }
         return news;
     }
@@ -90,6 +96,8 @@ public class NewsServiceImpl implements NewsService {
             onenews.setNewsLikeornotlike(likeornotlike);
             int likenum = newsDao.queryLikeCount(newsid);
             onenews.setNewLikeNum(likenum);
+            int commentnum = commentDao.queryCommentCountByNewsId(newsid);
+            onenews.setNewsCommentNum(commentnum);
         }
         return news;
     }
@@ -106,6 +114,8 @@ public class NewsServiceImpl implements NewsService {
             onenews.setNewsLikeornotlike(likeornotlike);
             int likenum = newsDao.queryLikeCount(newsid);
             onenews.setNewLikeNum(likenum);
+            int commentnum = commentDao.queryCommentCountByNewsId(newsid);
+            onenews.setNewsCommentNum(commentnum);
         }
         return news;
     }
@@ -122,6 +132,8 @@ public class NewsServiceImpl implements NewsService {
             onenews.setNewsLikeornotlike(likeornotlike);
             int likenum = newsDao.queryLikeCount(newsid);
             onenews.setNewLikeNum(likenum);
+            int commentnum = commentDao.queryCommentCountByNewsId(newsid);
+            onenews.setNewsCommentNum(commentnum);
         }
         return news;
     }
@@ -138,6 +150,8 @@ public class NewsServiceImpl implements NewsService {
             onenews.setNewsLikeornotlike(likeornotlike);
             int likenum = newsDao.queryLikeCount(newsid);
             onenews.setNewLikeNum(likenum);
+            int commentnum = commentDao.queryCommentCountByNewsId(newsid);
+            onenews.setNewsCommentNum(commentnum);
         }
         return news;
     }
@@ -154,6 +168,8 @@ public class NewsServiceImpl implements NewsService {
             onenews.setNewsLikeornotlike(likeornotlike);
             int likenum = newsDao.queryLikeCount(newsid);
             onenews.setNewLikeNum(likenum);
+            int commentnum = commentDao.queryCommentCountByNewsId(newsid);
+            onenews.setNewsCommentNum(commentnum);
         }
         return news;
     }

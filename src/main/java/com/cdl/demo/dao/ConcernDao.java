@@ -14,6 +14,6 @@ public interface ConcernDao {
     boolean sendConcernStar(@Param("userId") int userId, @Param("concernedId") int concernedId);
     boolean deleteConcern(@Param("userId") int userId, @Param("concernedId") int concernedId);
     boolean sendConcern(@Param("userId") int userId, @Param("concernedId") int concernedId);
-
-
+    int getUserConcerenCount(@Param("userId") int userId);
+    int getUserConcerenedCount(@Param("userId") int userId );
 }

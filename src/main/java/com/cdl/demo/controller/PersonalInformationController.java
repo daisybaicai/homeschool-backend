@@ -7,6 +7,8 @@ import com.cdl.demo.service.PersonalInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/personal1")
@@ -14,6 +16,12 @@ public class PersonalInformationController {
 
     @Autowired
     private PersonalInformationService personalInformationService;
+
+    @RequestMapping(value ="/getPersonalByUser" )
+    public Result getPersonalByUser(@RequestParam("userId") int userId, @RequestParam("classId") int classId) {
+        Map<String,Object> map = personalInformationService.getPersonalByUserId(userId, classId);
+        return new Result(ResultEnum.SUCCESS,map);
+    }
 
     @GetMapping(value = "/Personalinform/{userId}")
     public Result getPersonalInformByUserId(@PathVariable int userId) {

@@ -1,16 +1,33 @@
 package com.cdl.demo.service.impl;
 
-import com.cdl.demo.dao.PersonalInformationDao;
+import com.cdl.demo.dao.*;
+import com.cdl.demo.domain.Notification;
 import com.cdl.demo.domain.PersonalInformation;
 import com.cdl.demo.service.PersonalInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class PersonalInformationServicelImpl implements PersonalInformationService {
 
     @Autowired
     private PersonalInformationDao personalInformationDao;
+
+    @Autowired
+    private NewsDao newsDao;
+
+    @Autowired
+    private ConcernDao concernDao;
+
+    @Autowired
+    private UserDao userDao;
+
+
+    @Autowired
+    private NotificationDao notificationDao;
 
     @Override
     public PersonalInformation getInformationByUserId(Integer userId) {
@@ -51,6 +68,21 @@ public class PersonalInformationServicelImpl implements PersonalInformationServi
     public boolean changeWork(Integer userId, String work) {
         personalInformationDao.changeWork(userId,work);
         return true;
+    }
+
+    @Override
+    public Map<String, Object> getPersonalByUserId(int userId,int classId) {
+        Map<String,Object> map = new HashMap<>();
+        int guanzhu = concernDao.getUserConcerenCount(userId);
+        int fans = concernDao.getUserConcerenedCount(userId);
+        int weibo = newsDao.getAllNewsCountByUserId(userId);
+        Notification notification = notificationDao.queryOneNotificationByClassId(classId);
+        notification.setNotificationUser(userDao.queryUserById(notification.getNotificationUserId()));
+        map.put("guanzhu",guanzhu);
+        map.put("fans",fans);
+        map.put("weibo",weibo);
+        map.put("note",notification);
+        return map;
     }
 
 

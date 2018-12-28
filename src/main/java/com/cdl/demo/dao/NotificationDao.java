@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface NotificationDao {
     List<Notification> queryNotificationByClassId(@Param("classId") int classId);
+
+    Notification queryOneNotificationByClassId(@Param("classId") int classId);
 }

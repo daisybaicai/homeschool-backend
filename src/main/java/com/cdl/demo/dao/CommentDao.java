@@ -13,4 +13,6 @@ public interface CommentDao {
     int queryCommentUserIdByCommentId(@Param("commentTargetId")int commentTargetId);
 
     int sendComment(Comment comment);
+
+    int queryCommentCountByNewsId(@Param("newsId") int newsId);
 }

@@ -15,6 +15,15 @@ public class News {
     private Integer newLikeNum;
     private List<Comment> newsComment;
     private List<User> newsLikeUser;
+    private Integer newsCommentNum;
+
+    public Integer getNewsCommentNum() {
+        return newsCommentNum;
+    }
+
+    public void setNewsCommentNum(Integer newsCommentNum) {
+        this.newsCommentNum = newsCommentNum;
+    }
 
     public List<User> getNewsLikeUser() {
         return newsLikeUser;
