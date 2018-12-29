@@ -22,6 +22,20 @@ public class ConcernServiceImpl implements ConcernService {
     }
 
     @Override
+    public List<Concern> getUserAllFans(Integer userId) {
+        List<Concern> users= concernDao.getUserAllFans(userId);
+        for (Concern c:users){
+            Concern s = concernDao.fanshu(c.getConcernedId(),c.getConcernId());
+           if(s != null){
+               c.setStarConcern("3");
+           }else {
+               c.setStarConcern("0");
+           }
+        }
+        return users;
+    }
+
+    @Override
     public List<Concern> getUserAllConcern(Integer userId) {
         List<Concern> users = concernDao.getUserAllConcern(userId);
         return users;

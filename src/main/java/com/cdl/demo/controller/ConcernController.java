@@ -24,6 +24,12 @@ public class ConcernController {
         return new Result<List<Concern>>(ResultEnum.SUCCESS, users);
     }
 
+    @GetMapping(value = "/getUserAllFans/{userId}")
+    public Result<List<Concern>> getUserAllFans(@PathVariable int userId) {
+        List<Concern> users=concernService.getUserAllFans(userId);
+        return new Result<List<Concern>>(ResultEnum.SUCCESS, users);
+    }
+
     @GetMapping(value = "/getAllConcern/{userId}")
     public Result<List<Concern>> getAllConcern(@PathVariable int userId) {
         List<Concern> users=concernService.getUserAllConcern(userId);
