@@ -40,4 +40,13 @@
             </if>
         </trim>
     </insert>
+    <select id="queryUnhandledAccusationByPage" resultType="com.cdl.demo.domain.Accusation">
+        SELECT *
+        FROM accusation
+        WHERE accusation_status=0
+        LIMIT #{startIndex},#{pageSize}
+    </select>
+    <update id="updateAccusationStatusById">
+        UPDATE accusation SET accusation_status=#{accusationStatus} WHERE accusation_id=#{accusationId}
+    </update>
 </mapper>

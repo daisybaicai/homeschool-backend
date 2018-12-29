@@ -10,4 +10,8 @@ public interface CommentService {
     List<Comment> queryCommentByNewsId(int newId);
 
     int sendComment(Comment comment);
+
+    List<Comment> queryCommentByUserId(int userId);
+
+    int deleteCommentById(int commentId);
 }

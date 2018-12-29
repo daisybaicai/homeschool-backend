@@ -25,4 +25,6 @@ public interface NewsDao {
     int insertNews(News news);
 
     int getAllNewsCountByUserId(@Param("userId") int userId);
+
+    int deleteNewsByNewsId(@Param("newsId") int newsId);
 }

@@ -30,4 +30,14 @@ public class CommentController {
             return new Result(ResultEnum.ERROR,"错误");
         }
     }
+
+    @GetMapping(value = "getCommentByUserId")
+    public Result getCommentByUserId(int userId) {
+        return new Result<>(ResultEnum.SUCCESS, commentService.queryCommentByUserId(userId));
+    }
+
+    @DeleteMapping(value = "{commentId}")
+    public Result deleteCommentById(@PathVariable int commentId) {
+        return new Result<>(ResultEnum.SUCCESS, commentService.deleteCommentById(commentId));
+    }
 }
