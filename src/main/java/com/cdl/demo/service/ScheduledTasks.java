@@ -46,9 +46,6 @@ public class ScheduledTasks {
                     likeService.sendLike(like);
                 }
                 System.out.print("通过leftPop(K key)方法移除的元素是:" + popValue);
-//                List<Object> list = redisTemplate.opsForList().range("list", 0, -1);
-//
-//                System.out.println(",剩余的元素是:" + list);
             }
         }
     }

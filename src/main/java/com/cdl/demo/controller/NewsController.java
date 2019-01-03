@@ -139,11 +139,11 @@ public class NewsController {
         System.out.println("------list");
         redisService.push("mylist",like);
         List<Object> list =redisService.range("mylist",1,10);
-        for (Object like4:list
-             ) {
-            Like like5 = (Like) like4;
-            System.out.println(like5);
-        }
+//        for (Object like4:list
+//             ) {
+//            Like like5 = (Like) like4;
+//            System.out.println(like5);
+//        }
         System.out.println("长度"+redisService.getListLength("mylist"));
 
         return new Result<>(ResultEnum.SUCCESS,"ok");
