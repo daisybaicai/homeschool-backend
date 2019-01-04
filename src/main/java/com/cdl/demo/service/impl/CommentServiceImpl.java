@@ -34,4 +34,14 @@ public class CommentServiceImpl implements CommentService {
         commentDao.sendComment(comment);
         return 0;
     }
+
+    @Override
+    public List<Comment> queryCommentByUserId(int userId) {
+        return commentDao.queryCommentByUserId(userId);
+    }
+
+    @Override
+    public int deleteCommentById(int commentId) {
+        return commentDao.deleteCommentById(commentId);
+    }
 }

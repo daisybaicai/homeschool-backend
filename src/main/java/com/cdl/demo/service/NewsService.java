@@ -21,4 +21,6 @@ public interface NewsService {
     String insertNews(News news);
 
     News getDetailNewsByNewsId(int newsId);
+
+    int deleteNewsByNewsId(int newsId);
 }

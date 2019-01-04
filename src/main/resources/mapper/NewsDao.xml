@@ -79,4 +79,8 @@
         GROUP BY `like`.like_news_id
         ORDER BY count(*) DESC
     </select>
+    
+    <delete id="deleteNewsByNewsId">
+        DELETE FROM news WHERE news_id=#{newsId}
+    </delete>
 </mapper>

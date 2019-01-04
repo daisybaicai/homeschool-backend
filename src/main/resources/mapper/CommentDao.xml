@@ -22,4 +22,12 @@
         FROM comment
         where comment_news_id = #{newsId}
     </select>
+    <select id="queryCommentByUserId" resultType="com.cdl.demo.domain.Comment">
+        SELECT *
+        FROM comment
+        WHERE comment_user_id=#{userId}
+    </select>
+    <delete id="deleteCommentById">
+        DELETE FROM comment WHERE comment_id=#{commentId}
+    </delete>
 </mapper>

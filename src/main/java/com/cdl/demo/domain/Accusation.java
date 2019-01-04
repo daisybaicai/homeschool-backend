@@ -10,6 +10,7 @@ public class Accusation {
     private int accusationCommentId;
     private Timestamp accusationTime;
     private String accusationIntro;
+    private int accusationStatus;
 
     @Override
     public String toString() {
@@ -22,6 +23,14 @@ public class Accusation {
                 ", accusationTime=" + accusationTime +
                 ", accusationIntro='" + accusationIntro + '\'' +
                 '}';
+    }
+
+    public int getAccusationStatus() {
+        return accusationStatus;
+    }
+
+    public void setAccusationStatus(int accusationStatus) {
+        this.accusationStatus = accusationStatus;
     }
 
     public int getAccusationId() {

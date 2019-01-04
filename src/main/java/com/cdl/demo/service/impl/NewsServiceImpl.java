@@ -203,4 +203,9 @@ public class NewsServiceImpl implements NewsService {
         news.setNewsLikeUser(likeUsers);
         return news;
     }
+
+    @Override
+    public int deleteNewsByNewsId(int newsId) {
+        return newsDao.deleteNewsByNewsId(newsId);
+    }
 }

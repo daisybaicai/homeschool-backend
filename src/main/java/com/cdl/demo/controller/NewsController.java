@@ -178,8 +178,8 @@ public class NewsController {
             File filePath = new File(path);
             System.out.println("文件的保存路径：" + path);
             if (!filePath.exists() && !filePath.isDirectory()) {
-            System.out.println("目录不存在，创建目录:" + filePath);
-            filePath.mkdir();
+                System.out.println("目录不存在，创建目录:" + filePath);
+                filePath.mkdir();
             }
 
             //获取原始文件名称(包含格式)
@@ -204,17 +204,22 @@ public class NewsController {
 
             //将文件保存到服务器指定位置
             try {
-            picture.transferTo(targetFile);
-            System.out.println("上传成功");
+                picture.transferTo(targetFile);
+                System.out.println("上传成功");
             //将文件在服务器的存储路径返
                 String pathes ="newsPic/" + fileName;
                 return new Result<>(ResultEnum.SUCCESS,fileName);
-                } catch (IOException e) {
+            } catch (IOException e) {
                 System.out.println("上传失败");
                 e.printStackTrace();
                 String mess= "上传失败";
                 return new Result<>(ResultEnum.SUCCESS,fileName);
-                }
             }
+    }
+
+    @DeleteMapping(value = "/{newsId}")
+    public Result deleteNewsByNewsId(@PathVariable int newsId) {
+        return new Result<>(ResultEnum.SUCCESS, newsService.deleteNewsByNewsId(newsId));
+    }
 }
 
