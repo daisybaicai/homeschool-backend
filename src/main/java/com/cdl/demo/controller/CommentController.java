@@ -24,7 +24,7 @@ public class CommentController {
     @PostMapping(value = "sendComment")
     public Result sendComment(Comment comment, HttpServletRequest request) {
         int result = commentService.sendComment(comment);
-        if (result == 1) {
+        if (result == 0) {
             return new Result(ResultEnum.SUCCESS,"成功");
         } else{
             return new Result(ResultEnum.ERROR,"错误");
