@@ -9,4 +9,6 @@ public interface NotificationDao {
     List<Notification> queryNotificationByClassId(@Param("classId") int classId);
 
     Notification queryOneNotificationByClassId(@Param("classId") int classId);
+
+    int insertNotification(Notification notification);
 }

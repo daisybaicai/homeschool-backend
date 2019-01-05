@@ -26,4 +26,10 @@ public class NotificationServiceImpl implements NotificationService{
         }
         return notificationList;
     }
+
+    @Override
+    public int insertNotification(Notification notification) {
+        notificationDao.insertNotification(notification);
+        return 0;
+    }
 }

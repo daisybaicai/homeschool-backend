@@ -16,4 +16,8 @@
         ORDER BY notification_time DESC
         LIMIT 1
     </select>
+    <insert id="insertNotification" parameterType="com.cdl.demo.domain.Notification">
+        INSERT INTO notification(notification_class_id, notification_user_id, notification_title, notification_content)
+        VALUES (#{notificationClassId}, #{notificationUserId}, #{notificationTitle}, #{notificationContent})
+    </insert>
 </mapper>
