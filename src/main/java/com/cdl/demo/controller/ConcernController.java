@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/concern")
+@RequestMapping("/api/concern")
 public class ConcernController {
 
     @Autowired
