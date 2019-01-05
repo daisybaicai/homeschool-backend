@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/mature")
+@RequestMapping("/api/mature")
 public class MatureController {
 
     @Autowired

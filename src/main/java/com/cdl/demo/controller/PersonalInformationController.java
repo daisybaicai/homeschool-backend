@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/personal1")
+@RequestMapping("/api/personal1")
 public class PersonalInformationController {
 
     @Autowired

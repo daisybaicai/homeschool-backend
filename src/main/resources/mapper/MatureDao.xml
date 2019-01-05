@@ -9,7 +9,7 @@
         news.news_user_id,news.news_content,news.news_upload_time,news.news_imageURLs,news.news_videoURLs
         FROM mature,news
         WHERE mature.user_id = #{userId} and news.news_id = mature.news_id
-        order by insert_time DESC 
+        order by insert_time DESC
     </select>
 
 
